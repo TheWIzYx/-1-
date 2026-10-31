@@ -7,6 +7,7 @@ public class Main {
 
         int sizeBoard = 5;
         int step = 0;
+        int score = 0;
 
         Person person = new Person(sizeBoard);
 
@@ -66,6 +67,9 @@ public class Main {
         System.out.println("Ваш ответ:\t" + answer);
 
         switch (answer) {
+            case "да":
+            case "Да":
+            case "дА":
             case "ДА":
                 System.out.println("Выбери сложность игры (от 1 до 5):");
                 int difficultGame = scanner.nextInt();
@@ -97,10 +101,11 @@ public class Main {
                             board[person.getY() - 1][person.getX() - 1] = "  ";
                             person.move(x, y);
                             step++;
+                            score += 10 * difficultGame;
                             person.addLive();
                             System.out.println("Вы нашли зелье! +1 жизнь");
                         } else if (board[y - 1][x - 1].equals(castle)) {
-                            System.out.println("Вы прошли игру!");
+                            System.out.println("Вы прошли игру!\nКоличество ходов: "+step+". Количество очков: "+score);
                             break;
                         } else {
                             for (Monster monster : monsters) {
@@ -109,6 +114,7 @@ public class Main {
                                         board[person.getY() - 1][person.getX() - 1] = "  ";
                                         person.move(x, y);
                                         step++;
+                                        score += 10 * difficultGame;
                                     } else {
                                         person.downLive();
                                     }
@@ -126,11 +132,13 @@ public class Main {
                 }
 
                 if (person.getLive() <= 0) {
-                    System.out.println("Закончились жизни. Итог: ...");
+                    System.out.println("Закончились жизни. Вы проиграли.\nКоличество ходов: "+step+". Количество очков: "+score);
                 }
                 break;
 
             case "НЕТ":
+            case "нет":
+            case "Нет":
                 System.out.println("Жаль, приходи ещё!");
                 break;
 
@@ -157,7 +165,7 @@ public class Main {
         }
         System.out.println(wall);
 
-        System.out.println("Количество жизней:\t" + live + "\n");
+        System.out.println("Количество жизней:\t" + live);
 
     }
 }

@@ -43,7 +43,7 @@ public class Monster {
         int answer = scanner.nextInt();
 
         if (trueAnswer == answer) {
-            System.out.println("Верно! Ты победил монстра");
+            System.out.println("Верно! Ты победил монстра. Вы получаете "+10*difficultGame+ " очков");
             return true;
         } else {
             System.out.println("Ты проиграл эту битву!");
